@@ -405,6 +405,8 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -2722859638161230460, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   lookSpeed: 0.1
+  minPitch: -30
+  maxPitch: 90
 --- !u!136 &809548730
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -493,7 +495,7 @@ Transform:
   m_GameObject: {fileID: 809548728}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.49589, y: 1.03, z: -0.064}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
