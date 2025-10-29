@@ -4,29 +4,41 @@ using UnityEngine.InputSystem;
 
 public class FpsPlayer : MonoBehaviour
 {
+    public GameObject cameraObject = null;
+
     [Header("Input")]
     public InputActionProperty lookAction;
+    public float moveSpeed = 0.1f;
     public float lookSpeed = 0.1f;
     public float minPitch = -89.0f;
     public float maxPitch = 89.0f;
 
-    private Vector2 eulerAngles = Vector2.zero;
+    private float pitch = 0.0f;
+    private float yaw = 0.0f;
 
     void Start()
     {
-        eulerAngles = transform.eulerAngles;
+        var euler = transform.localEulerAngles;
+        pitch = euler.x;
+        yaw = euler.y;
     }
 
     void Update()
     {
+        UpdatePitchYaw();
+
+        transform.localRotation = Quaternion.AngleAxis(yaw, Vector3.up);
+
+        if (!cameraObject)
+            return;
+
+        cameraObject.transform.localRotation = Quaternion.AngleAxis(pitch, Vector3.right);
+    }
+
+    void UpdatePitchYaw()
+    {
         var look = lookSpeed * lookAction.action.ReadValue<Vector2>();
-
-        eulerAngles.x = Mathf.Clamp(eulerAngles.x - look.y, -maxPitch, -minPitch);
-        eulerAngles.y += look.x;
-
-        var rotationX = Quaternion.AngleAxis(eulerAngles.x, Vector3.right);
-        var rotationY = Quaternion.AngleAxis(eulerAngles.y, Vector3.up);
-
-        transform.rotation = (rotationY * rotationX).normalized;
+        pitch = Mathf.Clamp(pitch - look.y, -maxPitch, -minPitch);
+        yaw += look.x;
     }
 }
