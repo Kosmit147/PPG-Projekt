@@ -475,6 +475,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPSCamera
   cameraObject: {fileID: 506427665}
+  moveAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Move
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a86a8ce6-8117-4efc-83dc-79bc56c94f72
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 3225676785037007988, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   lookAction:
     m_UseReference: 1
     m_Action:
@@ -487,10 +499,10 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -2722859638161230460, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
-  moveSpeed: 0.1
+  moveSpeed: 1000
   lookSpeed: 0.1
-  minPitch: -30
-  maxPitch: 90
+  minPitch: -89
+  maxPitch: 89
 --- !u!136 &809548730
 CapsuleCollider:
   m_ObjectHideFlags: 0
