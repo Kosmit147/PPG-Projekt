@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +23,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         cameraEulerAngles = transform.eulerAngles;
         characterController = gameObject.GetComponent<CharacterController>();
     }
