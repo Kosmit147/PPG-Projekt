@@ -478,8 +478,9 @@ GameObject:
   m_Component:
   - component: {fileID: 506427666}
   - component: {fileID: 506427667}
+  - component: {fileID: 506427668}
   m_Layer: 0
-  m_Name: PlayerCamera
+  m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,6 +552,33 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &506427668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506427665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6328f2b79598b0040b07fbd5f17a540d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FpsCamera
+  lookAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Look
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 12c01a0f-7c4b-4ec2-afa4-636424a67bb3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -2722859638161230460, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  lookSpeed: 0.1
+  minPitch: -89
+  maxPitch: 89
 --- !u!1 &533040045
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cca09f4da85c645be8b347bcc1700e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPSCamera
-  playerCamera: {fileID: 506427665}
+  camera: {fileID: 506427665}
   moveAction:
     m_UseReference: 1
     m_Action:
@@ -819,18 +847,6 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 3225676785037007988, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
-  lookAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Look
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 1cdd9e92-720d-44db-9b75-5a7fb034d7f8
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -2722859638161230460, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   jumpAction:
     m_UseReference: 1
     m_Action:
@@ -844,10 +860,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7835242038366865876, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   moveSpeed: 2
-  lookSpeed: 0.1
   jumpForce: 5
-  minPitch: -89
-  maxPitch: 89
   gravity: -9.81
 --- !u!23 &809548731
 MeshRenderer:
