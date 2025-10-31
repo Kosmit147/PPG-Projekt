@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[System.Serializable]
 public enum CameraType
 {
     Fps,
@@ -32,13 +33,17 @@ public struct TopDownCameraProperties
 {
     public Vector2 eulerAngles;
     public Vector3 offset;
+    public float panSpeed;
+    public int panSensitivity; // How close to the edge of the window should the cursor be in order to move the camera.
     public float zoomSpeed;
     public float fov;
 
-    public TopDownCameraProperties(Vector2 eulerAngles, Vector3 offset, float zoomSpeed, float fov)
+    public TopDownCameraProperties(Vector2 eulerAngles, Vector3 offset, float panSpeed, int panSensitivity, float zoomSpeed, float fov)
     {
         this.eulerAngles = eulerAngles;
         this.offset = offset;
+        this.panSpeed = panSpeed;
+        this.panSensitivity = panSensitivity;
         this.zoomSpeed = zoomSpeed;
         this.fov = fov;
     }
@@ -53,8 +58,12 @@ public class PlayerCamera : MonoBehaviour
         {
             cameraType = value;
             UpdateCursorLockState();
+            panOffset = Vector2.zero;
         }
     }
+
+    [SerializeField]
+    private CameraType cameraType = CameraType.Fps;
 
     public Vector2 EulerAngles
     {
@@ -72,16 +81,17 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    public InputActionProperty switchCameraAction; // Expects a button.
-    public InputActionProperty lookAction; // Expects a Vector2.
-    public InputActionProperty zoomAction; // Expects a Vector2.
+    public InputActionProperty switchCameraAction;  // Expects a button.
+    public InputActionProperty lookAction;          // Expects a Vector2.
+    public InputActionProperty zoomAction;          // Expects a Vector2.
+    public InputActionProperty pointAction;         // Expects a Vector2.
 
     public FpsCameraProperties fpsProperties = new(0.1f, 1.0f, -89.0f, 89.0f, 60.0f);
-    public TopDownCameraProperties topDownProperties = new(new Vector2(75.0f, 0.0f), new Vector3(0.0f, 20.0f, 0.0f), 1.0f, 60.0f);
+    public TopDownCameraProperties topDownProperties = new(new Vector2(75.0f, 0.0f), new Vector3(0.0f, 20.0f, 0.0f), 5.0f, 10, 1.0f, 60.0f);
 
-    private CameraType cameraType = CameraType.Fps;
     private new Camera camera = null;
     private Vector2 fpsEulerAngles = Vector2.zero;
+    private Vector2 panOffset = Vector2.zero;
 
     void Awake()
     {
@@ -130,7 +140,12 @@ public class PlayerCamera : MonoBehaviour
         var zoom = topDownProperties.zoomSpeed * zoomAction.action.ReadValue<Vector2>();
         topDownProperties.offset.y -= zoom.y;
 
-        transform.localPosition = topDownProperties.offset;
+        var pan = GetPan();
+        var rotatedPan = Quaternion.AngleAxis(EulerAngles.y, Vector3.up) * new Vector3(pan.x, 0.0f, pan.y);
+        panOffset.x += rotatedPan.x;
+        panOffset.y += rotatedPan.z;
+
+        transform.localPosition = topDownProperties.offset + new Vector3(panOffset.x, 0.0f, panOffset.y);
         ApplyEulerAngles(new Vector3(topDownProperties.eulerAngles.x, topDownProperties.eulerAngles.y, 0.0f));
         camera.fieldOfView = topDownProperties.fov;
     }
@@ -146,6 +161,37 @@ public class PlayerCamera : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
                 break;
         }
+    }
+
+    Vector2 GetPan()
+    {
+        var cursorPosition = pointAction.action.ReadValue<Vector2>();
+        var pan = new Vector2(GetHorizontalPan(cursorPosition), GetVerticalPan(cursorPosition));
+        return Time.deltaTime * topDownProperties.panSpeed * pan;
+    }
+
+    float GetHorizontalPan(Vector2 cursorPosition)
+    {
+        var panSensitivity = topDownProperties.panSensitivity;
+
+        if (cursorPosition.x <= panSensitivity)
+            return -1.0f;
+        else if (cursorPosition.x >= Screen.width - panSensitivity)
+            return 1.0f;
+
+        return 0.0f;
+    }
+
+    float GetVerticalPan(Vector2 cursorPosition)
+    {
+        var panSensitivity = topDownProperties.panSensitivity;
+
+        if (cursorPosition.y <= panSensitivity)
+            return -1.0f;
+        else if (cursorPosition.y >= Screen.height - panSensitivity)
+            return 1.0f;
+
+        return 0.0f;
     }
 
     void SwitchCamera()

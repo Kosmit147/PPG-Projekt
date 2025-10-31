@@ -600,13 +600,32 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 5234395812355318106, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  pointAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Point
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 20b9df08-2803-4c83-addd-8f82e01fd5bb
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5630992045455383288, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   fpsProperties:
     lookSpeed: 0.1
+    zoomSpeed: 1
     minPitch: -89
     maxPitch: 89
+    fov: 60
   topDownProperties:
-    eulerAngles: {x: 75, y: 0}
+    eulerAngles: {x: 75, y: 23}
     offset: {x: 0, y: 20, z: 0}
+    panSpeed: 15
+    panSensitivity: 10
+    zoomSpeed: 1
+    fov: 60
+  cameraType: 1
 --- !u!1 &533040045
 GameObject:
   m_ObjectHideFlags: 0
