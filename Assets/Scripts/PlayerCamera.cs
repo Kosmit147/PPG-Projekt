@@ -66,7 +66,7 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
-        if (switchCameraAction.action.triggered)
+        if (switchCameraAction.action.WasPerformedThisFrame())
             SwitchCamera();
 
         switch (cameraType)

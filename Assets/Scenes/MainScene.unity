@@ -591,7 +591,8 @@ MonoBehaviour:
   lookSpeed: 0.1
   minPitch: -89
   maxPitch: 89
-  cameraTilt: 75
+  cameraPitch: 75
+  cameraYaw: 0
   cameraOffset: {x: 0, y: 20, z: -3}
 --- !u!1 &533040045
 GameObject:
@@ -873,7 +874,20 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 7835242038366865876, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  sprintAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Sprint
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 30d4db32-1a15-4808-a2a0-a48ff00ec6aa
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 4020569534870393782, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   moveSpeed: 2
+  sprintSpeed: 5
   jumpForce: 5
   gravity: -9.81
 --- !u!23 &809548731
