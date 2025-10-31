@@ -8,6 +8,34 @@ public enum CameraType
     TopDown,
 }
 
+[System.Serializable]
+public struct FpsCameraProperties
+{
+    public float lookSpeed;
+    public float minPitch;
+    public float maxPitch;
+
+    public FpsCameraProperties(float lookSpeed, float minPitch, float maxPitch)
+    {
+        this.lookSpeed = lookSpeed;
+        this.minPitch = minPitch;
+        this.maxPitch = maxPitch;
+    }
+}
+
+[System.Serializable]
+public struct TopDownCameraProperties
+{
+    public Vector2 eulerAngles;
+    public Vector3 offset;
+
+    public TopDownCameraProperties(Vector2 eulerAngles, Vector3 offset)
+    {
+        this.eulerAngles = eulerAngles;
+        this.offset = offset;
+    }
+}
+
 public class PlayerCamera : MonoBehaviour
 {
     public CameraType CameraType
@@ -29,7 +57,7 @@ public class PlayerCamera : MonoBehaviour
                 case CameraType.Fps:
                     return fpsEulerAngles;
                 case CameraType.TopDown:
-                    return topDownEulerAngles;
+                    return topDownProperties.eulerAngles;
             }
 
             return Vector2.zero;
@@ -37,21 +65,13 @@ public class PlayerCamera : MonoBehaviour
     }
 
     public InputActionProperty switchCameraAction; // Expects a button.
-
-    [Header("Fps Camera Properties")]
     public InputActionProperty lookAction; // Expects a Vector2.
-    public float lookSpeed = 0.1f;
-    public float minPitch = -89.0f;
-    public float maxPitch = 89.0f;
 
-    [Header("Top-down Camera Properties")]
-    public float cameraPitch = 75.0f;
-    public float cameraYaw = 0.0f;
-    public Vector3 cameraOffset = new(0.0f, 20.0f, -3.0f);
+    public FpsCameraProperties fpsProperties = new(0.1f, -89.0f, 89.0f);
+    public TopDownCameraProperties topDownProperties = new(new Vector2(75.0f, 0.0f), new Vector3(0.0f, 20.0f, 0.0f));
 
     private CameraType cameraType = CameraType.Fps;
     private Vector2 fpsEulerAngles = Vector2.zero;
-    private Vector2 topDownEulerAngles = Vector2.zero;
 
     void Awake()
     {
@@ -61,7 +81,7 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         UpdateCursorLockState();
-        InitEulerAngles();
+        fpsEulerAngles = transform.eulerAngles;
     }
 
     void Update()
@@ -82,11 +102,11 @@ public class PlayerCamera : MonoBehaviour
 
     void FpsCameraUpdate()
     {
-        var look = lookSpeed * lookAction.action.ReadValue<Vector2>();
+        var look = fpsProperties.lookSpeed * lookAction.action.ReadValue<Vector2>();
 
         fpsEulerAngles.x -= look.y;
         fpsEulerAngles.y += look.x;
-        fpsEulerAngles.x = Mathf.Clamp(fpsEulerAngles.x, -maxPitch, -minPitch);
+        fpsEulerAngles.x = Mathf.Clamp(fpsEulerAngles.x, -fpsProperties.maxPitch, -fpsProperties.minPitch);
 
         transform.localPosition = Vector3.zero;
         ApplyEulerAngles(fpsEulerAngles);
@@ -96,9 +116,8 @@ public class PlayerCamera : MonoBehaviour
     {
         // TODO: Zoom.
 
-        transform.localPosition = cameraOffset;
-        topDownEulerAngles = new Vector3(cameraPitch, cameraYaw, 0.0f);
-        ApplyEulerAngles(topDownEulerAngles);
+        transform.localPosition = topDownProperties.offset;
+        ApplyEulerAngles(new Vector3(topDownProperties.eulerAngles.x, topDownProperties.eulerAngles.y, 0.0f));
     }
 
     void UpdateCursorLockState()
@@ -125,12 +144,6 @@ public class PlayerCamera : MonoBehaviour
                 CameraType = CameraType.Fps;
                 break;
         }
-    }
-
-    void InitEulerAngles()
-    {
-        fpsEulerAngles = transform.eulerAngles;
-        topDownEulerAngles = new Vector2(cameraPitch, cameraYaw);
     }
 
     void ApplyEulerAngles(Vector2 eulerAngles)

@@ -588,12 +588,13 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -2722859638161230460, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
-  lookSpeed: 0.1
-  minPitch: -89
-  maxPitch: 89
-  cameraPitch: 75
-  cameraYaw: 0
-  cameraOffset: {x: 0, y: 20, z: -3}
+  fpsProperties:
+    lookSpeed: 0.1
+    minPitch: -89
+    maxPitch: 89
+  topDownProperties:
+    eulerAngles: {x: 75, y: 0}
+    offset: {x: 0, y: 20, z: 0}
 --- !u!1 &533040045
 GameObject:
   m_ObjectHideFlags: 0
