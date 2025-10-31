@@ -564,13 +564,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6328f2b79598b0040b07fbd5f17a540d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FpsCamera
+  switchCameraAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Switch Camera
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c4093832-bc1a-410e-8c60-4b462ead7074
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 4524765275036255290, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   lookAction:
     m_UseReference: 1
     m_Action:
       m_Name: Look
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 12c01a0f-7c4b-4ec2-afa4-636424a67bb3
+      m_Id: 6722e457-541b-4c3b-b986-0dc1b0cfc066
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -579,6 +591,8 @@ MonoBehaviour:
   lookSpeed: 0.1
   minPitch: -89
   maxPitch: 89
+  cameraTilt: 75
+  cameraOffset: {x: 0, y: 20, z: -3}
 --- !u!1 &533040045
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,11 +13,13 @@ public class Player : MonoBehaviour
 
     public float gravity = -9.81f;
 
+    private PlayerCamera playerCamera = null;
     private CharacterController characterController = null;
     private float verticalVelocity = 0.0f;
 
     void Start()
     {
+        playerCamera = camera.GetComponent<PlayerCamera>();
         characterController = gameObject.GetOrAddComponent<CharacterController>();
     }
 
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour
         verticalVelocity += Time.deltaTime * gravity;
 
         var moveInput = Vector2.ClampMagnitude(moveAction.action.ReadValue<Vector2>(), 1.0f);
-        var moveRotation = Quaternion.AngleAxis(camera.transform.eulerAngles.y, Vector3.up);
+        var moveRotation = Quaternion.AngleAxis(playerCamera.EulerAngles.y, Vector3.up);
 
         var motion = moveRotation * new Vector3(moveInput.x, 0.0f, moveInput.y) * moveSpeed;
         motion.y = verticalVelocity;
