@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528fbbe17a4428c40aad3ff2d2327a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FpsCamera
-  player: {fileID: 1247074666}
+  cameraRoot: {fileID: 1611497233}
   lookAction:
     m_UseReference: 1
     m_Action:
@@ -943,7 +943,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36078ab0369161e49a29d349ae3e0739, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1611497234}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 36078ab0369161e49a29d349ae3e0739, type: 3}
       insertIndex: -1
@@ -1203,7 +1206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6328f2b79598b0040b07fbd5f17a540d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TopDownCamera
-  player: {fileID: 1247074666}
   panSpeed: 15
   panSensitivity: 10
   zoomSpeed: 1
@@ -1396,6 +1398,30 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 4020569534870393782, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  pointAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Point
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d4bb0d91-71bc-4612-9b87-f892b68c7b48
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5630992045455383288, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  moveTowardsPointerAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Move Towards Pointer
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 20b7fe35-e8da-493b-964b-de462ebd250d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -4158160923227924527, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   moveSpeed: 2
   sprintSpeed: 5
   jumpForce: 5
@@ -1425,6 +1451,42 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.08, z: 0}
+--- !u!4 &1247074671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36078ab0369161e49a29d349ae3e0739, type: 3}
+  m_PrefabInstance: {fileID: 796920051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1611497233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611497234}
+  m_Layer: 0
+  m_Name: CameraRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611497234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611497233}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.695, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1247074671}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1648548553
 GameObject:
   m_ObjectHideFlags: 0

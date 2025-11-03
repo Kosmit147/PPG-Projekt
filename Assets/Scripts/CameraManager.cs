@@ -6,7 +6,8 @@ public class CameraManager : MonoBehaviour
     public InputActionProperty switchCameraAction; // Expects a button.
 
     public GameObject[] cameras = null;
-    public GameObject CurrentCamera { get; private set; } = null;
+    public GameObject CurrentCameraObject { get; private set; } = null;
+    public Camera CurrentCamera { get; private set; } = null;
 
     private int currentCameraIdx = 0;
 
@@ -32,14 +33,15 @@ public class CameraManager : MonoBehaviour
 
     void SetCamera(int cameraIdx)
     {
-        var prevCamera = CurrentCamera;
+        var prevCamera = CurrentCameraObject;
 
-        CurrentCamera = cameras[cameraIdx];
+        CurrentCameraObject = cameras[cameraIdx];
+        CurrentCamera = CurrentCameraObject.GetComponent<Camera>();
         currentCameraIdx = cameraIdx;
 
         if (prevCamera != null)
             prevCamera.SetActive(false);
 
-        CurrentCamera.SetActive(true);
+        CurrentCameraObject.SetActive(true);
     }
 }

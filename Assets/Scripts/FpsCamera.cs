@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Camera))]
 public class FpsCamera : MonoBehaviour
 {
-    public GameObject player = null;
+    public GameObject cameraRoot = null;
 
     public InputActionProperty lookAction;   // Expects a Vector2.
     public InputActionProperty zoomAction;   // Expects a Vector2.
@@ -19,8 +19,8 @@ public class FpsCamera : MonoBehaviour
 
     void Start()
     {
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+        if (cameraRoot == null)
+            cameraRoot = GameObject.FindGameObjectWithTag("Player");
 
         eulerAngles = transform.eulerAngles;
         camera = GetComponent<Camera>();
@@ -36,7 +36,7 @@ public class FpsCamera : MonoBehaviour
         eulerAngles.y += look.x;
         eulerAngles.x = Mathf.Clamp(eulerAngles.x, -maxPitch, -minPitch);
 
-        transform.position = player.transform.position;
+        transform.position = cameraRoot.transform.position;
         ApplyEulerAngles(eulerAngles);
     }
 

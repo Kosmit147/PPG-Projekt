@@ -4,20 +4,12 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Camera))]
 public class TopDownCamera : MonoBehaviour
 {
-    public GameObject player = null;
-
     public float panSpeed = 15.0f;
     public int panSensitivity = 10; // How close to the edge of the window should the cursor be in order to move the camera.
     public float zoomSpeed = 1.0f;
 
     public InputActionProperty zoomAction;   // Expects a Vector2.
     public InputActionProperty pointAction;  // Expects a Vector2.
-
-    void Start()
-    {
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
-    }
 
     void Update()
     {
