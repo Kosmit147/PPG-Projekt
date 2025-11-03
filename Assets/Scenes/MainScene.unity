@@ -486,7 +486,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &506427666
 Transform:
   m_ObjectHideFlags: 0
@@ -496,11 +496,11 @@ Transform:
   m_GameObject: {fileID: 506427665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 952190636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &506427669
 MonoBehaviour:
@@ -1001,6 +1001,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &952190634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 952190636}
+  - component: {fileID: 952190635}
+  m_Layer: 0
+  m_Name: CameraManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &952190635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952190634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e008d34015c7ee84eacd3cb8bcb3572f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraManager
+  switchCameraAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Switch Camera
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 8005d7a0-9696-4b7d-8b55-15156872152d
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 4524765275036255290, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  cameras:
+  - {fileID: 506427665}
+  - {fileID: 957211842}
+--- !u!4 &952190636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952190634}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 506427666}
+  - {fileID: 957211845}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &957211842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1123,12 +1184,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957211842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalRotation: {x: 0.60876137, y: -0, z: -0, w: 0.7933534}
   m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 952190636}
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!114 &957211846
 MonoBehaviour:
@@ -1298,9 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47cca09f4da85c645be8b347bcc1700e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  cameras:
-  - {fileID: 506427665}
-  - {fileID: 957211842}
+  cameraManagerObject: {fileID: 952190634}
   moveAction:
     m_UseReference: 1
     m_Action:
@@ -1337,18 +1396,6 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 4020569534870393782, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
-  switchCameraAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Switch Camera
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: e853da9e-a902-4721-b102-c8ab78115c83
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 4524765275036255290, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   moveSpeed: 2
   sprintSpeed: 5
   jumpForce: 5
@@ -1725,6 +1772,5 @@ SceneRoots:
   - {fileID: 1885911363}
   - {fileID: 1102241252}
   - {fileID: 1648548557}
-  - {fileID: 957211845}
-  - {fileID: 506427666}
   - {fileID: 796920051}
+  - {fileID: 952190636}
