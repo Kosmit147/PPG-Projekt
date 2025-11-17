@@ -7,7 +7,14 @@ public class GunAim : MonoBehaviour
 
     public Transform defaultPosition = null;
     public Transform aimPosition = null;
-    public float aimSpeed = 5.0f;
+    public float aimSpeed = 15.0f;
+
+    public Player player = null;
+    public Camera fpsCamera = null;
+    public float defaultFov = 60.0f;
+    public float aimFov = 70.0f;
+    public float defaultMoveSpeed = 2.0f;
+    public float aimMoveSpeed = 1.0f;
 
     private float fraction = 0.0f;
 
@@ -19,5 +26,7 @@ public class GunAim : MonoBehaviour
             fraction = Mathf.Clamp01(fraction - aimSpeed * Time.deltaTime);
 
         transform.position = Vector3.Lerp(defaultPosition.position, aimPosition.position, fraction);
+        fpsCamera.fieldOfView = Mathf.Lerp(defaultFov, aimFov, fraction);
+        player.moveSpeed = Mathf.Lerp(defaultMoveSpeed, aimMoveSpeed, fraction);
     }
 }
