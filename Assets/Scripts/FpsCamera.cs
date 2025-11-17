@@ -4,8 +4,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Camera))]
 public class FpsCamera : MonoBehaviour
 {
-    public InputActionProperty lookAction;   // Expects a Vector2.
-    public InputActionProperty zoomAction;   // Expects a Vector2.
+    public InputActionProperty lookAction; // Expects a Vector2.
+    public InputActionProperty zoomAction; // Expects a Vector2.
 
     public float lookSpeed = 0.1f;
     public float zoomSpeed = 1.0f;
@@ -21,7 +21,7 @@ public class FpsCamera : MonoBehaviour
         camera = GetComponent<Camera>();
     }
 
-    void Update()
+    void LateUpdate()
     {
         var zoom = zoomSpeed * zoomAction.action.ReadValue<Vector2>();
         camera.fieldOfView -= zoom.y;

@@ -11,7 +11,7 @@ public class TopDownCamera : MonoBehaviour
     public InputActionProperty zoomAction;   // Expects a Vector2.
     public InputActionProperty pointAction;  // Expects a Vector2.
 
-    void Update()
+    void LateUpdate()
     {
         var zoom = zoomSpeed * zoomAction.action.ReadValue<Vector2>();
         transform.localPosition += new Vector3(0.0f, -zoom.y, 0.0f);

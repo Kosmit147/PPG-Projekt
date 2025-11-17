@@ -2,23 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[System.Serializable]
-public enum ControlMode
-{
-    Fps,
-    TopDown,
-}
-
-[System.Serializable]
-struct AnimationParamIds
-{
-    public int speed;
-    public int jump;
-    public int grounded;
-    public int freeFall;
-    public int motionSpeed;
-}
-
 [RequireComponent(typeof(CharacterController), typeof(Animator))]
 public class Player : MonoBehaviour
 {
@@ -35,28 +18,45 @@ public class Player : MonoBehaviour
 
     public float gravity = -9.81f;
 
-    public ControlMode ControlMode
+    [System.Serializable]
+    public enum PlayerControlMode
+    {
+        Fps,
+        TopDown,
+    }
+
+    public PlayerControlMode ControlMode
     {
         get => controlMode; set
         {
             switch (value)
             {
-                case ControlMode.Fps:
+                case PlayerControlMode.Fps:
                     SetFpsControlMode();
                     break;
-                case ControlMode.TopDown:
+                case PlayerControlMode.TopDown:
                     SetTopDownControlMode();
                     break;
             }
         }
     }
 
-    public ControlMode initialControlMode = ControlMode.Fps;
+    public PlayerControlMode initialControlMode = PlayerControlMode.Fps;
 
     public FpsCamera fpsCamera = null;
     public TopDownCamera topDownCamera = null;
 
     public SkinnedMeshRenderer armatureMeshRenderer = null;
+
+    [System.Serializable]
+    private struct AnimationParamIds
+    {
+        public int speed;
+        public int jump;
+        public int grounded;
+        public int freeFall;
+        public int motionSpeed;
+    }
 
     private CharacterController characterController = null;
     private float verticalVelocity = 0.0f;
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     private Animator animator = null;
     private AnimationParamIds animParams = new();
 
-    private ControlMode controlMode = ControlMode.Fps;
+    private PlayerControlMode controlMode = PlayerControlMode.Fps;
     private Camera currentCamera = null;
 
     private Nullable<Vector3> moveTarget = null;
@@ -87,10 +87,10 @@ public class Player : MonoBehaviour
 
         switch (ControlMode)
         {
-            case ControlMode.Fps:
+            case PlayerControlMode.Fps:
                 FpsUpdate();
                 break;
-            case ControlMode.TopDown:
+            case PlayerControlMode.TopDown:
                 TopDownUpdate();
                 break;
         }
@@ -162,7 +162,7 @@ public class Player : MonoBehaviour
         }
         else if (verticalVelocity < 0.0f)
         {
-            // We're free falling.
+            // We're free-falling.
 
             animator.SetBool(animParams.grounded, false);
             animator.SetBool(animParams.freeFall, true);
@@ -199,10 +199,10 @@ public class Player : MonoBehaviour
     {
         switch (ControlMode)
         {
-            case ControlMode.Fps:
+            case PlayerControlMode.Fps:
                 SetTopDownControlMode();
                 break;
-            case ControlMode.TopDown:
+            case PlayerControlMode.TopDown:
                 SetFpsControlMode();
                 break;
         }
@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
 
     void SetFpsControlMode()
     {
-        controlMode = ControlMode.Fps;
+        controlMode = PlayerControlMode.Fps;
 
         if (currentCamera != null)
             currentCamera.gameObject.SetActive(false);
@@ -224,7 +224,7 @@ public class Player : MonoBehaviour
 
     void SetTopDownControlMode()
     {
-        controlMode = ControlMode.TopDown;
+        controlMode = PlayerControlMode.TopDown;
 
         if (currentCamera != null)
             currentCamera.gameObject.SetActive(false);
