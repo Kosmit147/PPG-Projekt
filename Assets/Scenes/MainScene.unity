@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7757947126742549135, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7763809825007691001, guid: 5c59210965ffbcc4093fe99a29edb777, type: 3}
       propertyPath: m_LocalScale.x
@@ -1517,6 +1517,32 @@ MonoBehaviour:
   aimFov: 45
   defaultMoveSpeed: 3
   aimMoveSpeed: 1
+--- !u!114 &976497660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976497654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06cb7123d2f9aa649a1896cb22046e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlareGun
+  shootAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Shoot
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d99f721d-c8df-4800-bbf1-fe63da9468e9
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 877376428323081799, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  flare: {fileID: 100002, guid: 75242014ac16eea4e9ced201b0fd02c1, type: 3}
+  barrelEnd: {fileID: 1299056296}
 --- !u!1 &1102241248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,7 +1775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: dddb6335529eb194f83735c0842fff4f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: dddb6335529eb194f83735c0842fff4f, type: 3}
       propertyPath: m_LocalScale.x
@@ -1818,7 +1844,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: dddb6335529eb194f83735c0842fff4f, type: 3}
       insertIndex: 2
       addedObject: {fileID: 976497659}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: dddb6335529eb194f83735c0842fff4f, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 976497660}
   m_SourcePrefab: {fileID: 100100000, guid: dddb6335529eb194f83735c0842fff4f, type: 3}
+--- !u!4 &1299056296 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: dddb6335529eb194f83735c0842fff4f, type: 3}
+  m_PrefabInstance: {fileID: 1299056295}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1371836288
 GameObject:
   m_ObjectHideFlags: 0
