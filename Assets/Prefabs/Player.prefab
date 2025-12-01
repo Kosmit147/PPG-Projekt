@@ -386,9 +386,23 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 1970940216849923588, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  interactAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Interact
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 94abf491-c444-4012-9143-9a1668608dc0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  interactText: {fileID: 0}
   moveSpeed: 2
   sprintSpeed: 5
   jumpForce: 5
+  interactDistance: 3
   gravity: -9.81
   initialControlMode: 0
   fpsCamera: {fileID: 2674589997326223717}
