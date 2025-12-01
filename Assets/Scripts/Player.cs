@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 [RequireComponent(typeof(CharacterController), typeof(Animator))]
 public class Player : MonoBehaviour
@@ -11,10 +12,14 @@ public class Player : MonoBehaviour
     public InputActionProperty pointAction;              // Expects a Vector2.
     public InputActionProperty moveTowardsPointerAction; // Expects a button.
     public InputActionProperty switchControlModeAction;  // Expects a button.
+    public InputActionProperty interactAction;           // Expects a button.
+
+    public TextMeshProUGUI interactText = null;
 
     public float moveSpeed = 2.0f;
     public float sprintSpeed = 5.0f;
     public float jumpForce = 5.0f;
+    public float interactDistance = 3.0f;
 
     public float gravity = -9.81f;
 
@@ -69,6 +74,10 @@ public class Player : MonoBehaviour
 
     private Nullable<Vector3> moveTarget = null;
 
+    private GameObject interactiveObject = null;
+    private Rigidbody interactiveObjectRigidbody = null;
+    private bool interactiveObjectWasKinematic = false;
+
     void Start()
     {
         ControlMode = initialControlMode;
@@ -80,6 +89,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (interactAction.action.WasPerformedThisFrame())
+            StartInteracting();
+
+        if (interactAction.action.WasCompletedThisFrame())
+            StopInteracting();
+
         if (switchControlModeAction.action.WasPerformedThisFrame())
             SwitchControlMode();
 
@@ -94,6 +109,12 @@ public class Player : MonoBehaviour
                 TopDownUpdate();
                 break;
         }
+    }
+
+    void FixedUpdate()
+    {
+        if (interactiveObject != null)
+            Interact();
     }
 
     void FpsUpdate()
@@ -182,6 +203,46 @@ public class Player : MonoBehaviour
     float GetTopDownMotionSpeed()
     {
         return sprintSpeed;
+    }
+
+    void StartInteracting()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, interactDistance))
+        {
+            if (hit.collider.CompareTag("Interactive"))
+            {
+                interactText.text = "Interacted with object!";
+                CancelInvoke(nameof(ClearText));
+                Invoke(nameof(ClearText), 1.0f);
+            }
+
+            interactiveObject = hit.collider.gameObject;
+            interactiveObjectRigidbody = interactiveObject.GetComponent<Rigidbody>();
+            interactiveObjectWasKinematic = interactiveObjectRigidbody.isKinematic;
+            interactiveObjectRigidbody.isKinematic = true;
+        }
+    }
+
+    void Interact()
+    {
+        var interactablePosition = fpsCamera.transform.position + fpsCamera.transform.forward * 2.0f;
+        interactiveObjectRigidbody.MovePosition(interactablePosition);
+    }
+
+    void StopInteracting()
+    {
+        if (interactiveObjectRigidbody != null)
+            interactiveObjectRigidbody.isKinematic = interactiveObjectWasKinematic;
+
+        interactiveObject = null;
+        interactiveObjectRigidbody = null;
+    }
+
+    void ClearText()
+    {
+        interactText.text = "";
     }
 
     void SetMoveTarget()

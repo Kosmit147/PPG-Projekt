@@ -37,7 +37,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "458eb896-6ab7-4b35-8587-b3a41380b0ee",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Hold",
                     "initialStateCheck": false
