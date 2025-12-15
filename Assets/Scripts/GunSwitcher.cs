@@ -9,6 +9,8 @@ public class GunSwitcher : MonoBehaviour
     public GameObject gun1 = null;
     public GameObject gun2 = null;
 
+    public GameObject currentGun = null;
+
     void Update()
     {
         if (selectGun1Action.action.WasPerformedThisFrame())
@@ -24,6 +26,7 @@ public class GunSwitcher : MonoBehaviour
             return;
 
         gun1.SetActive(true);
+        currentGun = gun1;
 
         if (gun2 != null)
             gun2.SetActive(false);
@@ -35,6 +38,7 @@ public class GunSwitcher : MonoBehaviour
             return;
 
         gun2.SetActive(true);
+        currentGun = gun2;
 
         if (gun1 != null)
             gun1.SetActive(false);

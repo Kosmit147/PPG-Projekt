@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using TMPro;
 
 [RequireComponent(typeof(CharacterController), typeof(Animator))]
@@ -22,6 +23,19 @@ public class Player : MonoBehaviour
     public float interactDistance = 3.0f;
 
     public float gravity = -9.81f;
+
+    public float health = 10.0f;
+    public float maxHealth = 10.0f;
+    public float healthRegenerationRate = 0.4f;
+
+    public float stamina = 10.0f;
+    public float maxStamina = 10.0f;
+    public float staminaDepletionRate = 2.0f;
+    public float staminaRegenerationRate = 0.4f;
+    public float minStaminaToRun = 1.0f;
+
+    public Slider healthSlider = null;
+    public Slider staminaSlider = null;
 
     [System.Serializable]
     public enum PlayerControlMode
@@ -65,6 +79,7 @@ public class Player : MonoBehaviour
 
     private CharacterController characterController = null;
     private float verticalVelocity = 0.0f;
+    private bool isRunning = false;
 
     private Animator animator = null;
     private AnimationParamIds animParams = new();
@@ -85,6 +100,8 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         RetrieveAnimParamIds();
         animator.SetFloat(animParams.motionSpeed, 1.0f);
+
+        InitializeHud();
     }
 
     void Update()
@@ -100,6 +117,8 @@ public class Player : MonoBehaviour
 
         GroundAndGravityUpdate();
 
+        isRunning = sprintAction.action.IsPressed() && stamina >= minStaminaToRun;
+
         switch (ControlMode)
         {
             case PlayerControlMode.Fps:
@@ -109,6 +128,14 @@ public class Player : MonoBehaviour
                 TopDownUpdate();
                 break;
         }
+
+        if (isRunning)
+            stamina = Mathf.Max(stamina - staminaDepletionRate * Time.deltaTime, 0.0f);
+
+        health = Mathf.Min(health + healthRegenerationRate * Time.deltaTime, maxHealth);
+        stamina = Mathf.Min(stamina + staminaRegenerationRate * Time.deltaTime, maxStamina);
+
+        UpdateHud();
     }
 
     void FixedUpdate()
@@ -192,9 +219,24 @@ public class Player : MonoBehaviour
         verticalVelocity += Time.deltaTime * gravity;
     }
 
+    void InitializeHud()
+    {
+        healthSlider.minValue = 0.0f;
+        healthSlider.maxValue = maxHealth;
+
+        staminaSlider.minValue = 0.0f;
+        staminaSlider.maxValue = maxStamina;
+    }
+
+    void UpdateHud()
+    {
+        healthSlider.value = health;
+        staminaSlider.value = stamina;
+    }
+
     float GetFpsMotionSpeed()
     {
-        if (sprintAction.action.IsPressed())
+        if (isRunning)
             return sprintSpeed;
         else
             return moveSpeed;
