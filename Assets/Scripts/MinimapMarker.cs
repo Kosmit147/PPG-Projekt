@@ -8,19 +8,18 @@ public class MinimapMarker : MonoBehaviour
 
     void Update()
     {
-        if (target != null)
-        {
-            transform.position = target.transform.position + offset;
-
-            if (matchYaw)
-            {
-                var eulerAngles = transform.eulerAngles;
-                transform.eulerAngles = new Vector3(eulerAngles.x, target.transform.eulerAngles.y, eulerAngles.z);
-            }
-        }
-        else
+        if (target == null)
         {
             Destroy(gameObject);
+            return;
+        }
+
+        transform.position = target.transform.position + offset;
+
+        if (matchYaw)
+        {
+            var eulerAngles = transform.eulerAngles;
+            transform.eulerAngles = new Vector3(eulerAngles.x, target.transform.eulerAngles.y, eulerAngles.z);
         }
     }
 }

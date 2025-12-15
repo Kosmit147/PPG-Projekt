@@ -14,13 +14,13 @@ public class GunSwitcher : MonoBehaviour
     void Update()
     {
         if (selectGun1Action.action.WasPerformedThisFrame())
-            selectGun1();
+            SelectGun1();
 
         if (selectGun2Action.action.WasPerformedThisFrame())
-            selectGun2();
+            SelectGun2();
     }
 
-    void selectGun1()
+    void SelectGun1()
     {
         if (gun1 == null)
             return;
@@ -32,7 +32,7 @@ public class GunSwitcher : MonoBehaviour
             gun2.SetActive(false);
     }
 
-    void selectGun2()
+    void SelectGun2()
     {
         if (gun2 == null)
             return;
