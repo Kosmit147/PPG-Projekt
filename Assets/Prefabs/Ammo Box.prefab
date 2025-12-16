@@ -126,3 +126,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickupAmmo
   amount: 1
   destroyOnPickup: 1
+  pickupSound: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}

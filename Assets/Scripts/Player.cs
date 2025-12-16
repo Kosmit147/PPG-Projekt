@@ -93,6 +93,8 @@ public class Player : MonoBehaviour
     private Rigidbody interactiveObjectRigidbody = null;
     private bool interactiveObjectWasKinematic = false;
 
+    private AudioSource audioSource = null;
+
     void Start()
     {
         ControlMode = initialControlMode;
@@ -100,6 +102,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         RetrieveAnimParamIds();
         animator.SetFloat(animParams.motionSpeed, 1.0f);
+        audioSource = GetComponent<AudioSource>();
 
         InitializeHud();
     }
@@ -351,6 +354,12 @@ public class Player : MonoBehaviour
         currentCamera.gameObject.SetActive(true);
 
         armatureMeshRenderer.enabled = true;
+    }
+
+    public void PlayClip(AudioClip clip)
+    {
+        if (clip != null)
+            audioSource.PlayOneShot(clip, 1.0f);
     }
 
     void OnFootstep(AnimationEvent animationEvent)

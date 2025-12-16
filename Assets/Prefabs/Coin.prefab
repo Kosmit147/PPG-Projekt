@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   itemData: {fileID: 11400000, guid: ae00e666060499240859292c284798dc, type: 2}
   amount: 1
+  pickupSound: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
 --- !u!65 &5059751220816874158
 BoxCollider:
   m_ObjectHideFlags: 0
