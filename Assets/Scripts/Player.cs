@@ -219,6 +219,16 @@ public class Player : MonoBehaviour
         verticalVelocity += Time.deltaTime * gravity;
     }
 
+    public void AddHealth(float value)
+    {
+        health = Mathf.Min(health + value, maxHealth);
+    }
+
+    public void Damage(float value)
+    {
+        health = Mathf.Max(health - value, 0);
+    }
+
     void InitializeHud()
     {
         healthSlider.minValue = 0.0f;
@@ -258,12 +268,12 @@ public class Player : MonoBehaviour
                 interactText.text = "Interacted with object!";
                 CancelInvoke(nameof(ClearText));
                 Invoke(nameof(ClearText), 1.0f);
-            }
 
-            interactiveObject = hit.collider.gameObject;
-            interactiveObjectRigidbody = interactiveObject.GetComponent<Rigidbody>();
-            interactiveObjectWasKinematic = interactiveObjectRigidbody.isKinematic;
-            interactiveObjectRigidbody.isKinematic = true;
+                interactiveObject = hit.collider.gameObject;
+                interactiveObjectRigidbody = interactiveObject.GetComponent<Rigidbody>();
+                interactiveObjectWasKinematic = interactiveObjectRigidbody.isKinematic;
+                interactiveObjectRigidbody.isKinematic = true;
+            }
         }
     }
 
