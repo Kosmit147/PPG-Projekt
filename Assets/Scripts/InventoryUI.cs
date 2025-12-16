@@ -46,9 +46,12 @@ public class InventoryUI : MonoBehaviour
 
             Image iconDisplay = newSlot.transform.Find("Icon").GetComponent<Image>();
             TextMeshProUGUI amountText = newSlot.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI valueText = newSlot.transform.Find("Value").GetComponent<TextMeshProUGUI>();
 
             iconDisplay.sprite = slot.item.icon;
             amountText.text = slot.amount.ToString();
+            float itemValue = (float)slot.item.value * slot.amount / 100.0f;
+            valueText.text = "$" + itemValue.ToString();
         }
     }
 }
