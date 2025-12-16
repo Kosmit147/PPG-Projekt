@@ -5,8 +5,15 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public List<InventorySlot> container = new();
+    public int minSlots = 9;
 
     public event Action OnInventoryChange;
+
+    void Awake()
+    {
+        for (int i = container.Count; i < minSlots; i++)
+            container.Add(new InventorySlot());
+    }
 
     public void AddItem(ItemData item, int amount)
     {
@@ -22,7 +29,26 @@ public class Inventory : MonoBehaviour
         }
 
         if (!hasItem)
-            container.Add(new InventorySlot(item, amount));
+        {
+            for (int i = 0; i < container.Count; i++)
+            {
+                if (container[i].item == null)
+                {
+                    container[i] = new InventorySlot(item, amount);
+                    break;
+                }
+            }
+        }
+
+        OnInventoryChange?.Invoke();
+    }
+
+    public void SwapItems(int indexA, int indexB)
+    {
+        if (indexA < 0 || indexA > container.Count || indexB < 0 || indexB > container.Count)
+            return;
+
+        (container[indexB], container[indexA]) = (container[indexA], container[indexB]);
 
         OnInventoryChange?.Invoke();
     }
@@ -31,8 +57,10 @@ public class Inventory : MonoBehaviour
 [System.Serializable]
 public class InventorySlot
 {
-    public ItemData item;
-    public int amount;
+    public ItemData item = null;
+    public int amount = 0;
+
+    public InventorySlot() { }
 
     public InventorySlot(ItemData item, int amount)
     {

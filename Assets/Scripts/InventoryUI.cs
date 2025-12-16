@@ -40,18 +40,37 @@ public class InventoryUI : MonoBehaviour
         foreach (Transform child in inventoryGrid.transform)
             Destroy(child.gameObject);
 
-        foreach (var slot in playerInventory.container)
+        for (int i = 0; i < playerInventory.container.Count; i++)
         {
+            var slot = playerInventory.container[i];
+
             GameObject newSlot = Instantiate(slotPrefab, inventoryGrid.transform);
+            var slotUI = newSlot.GetComponent<InventorySlotUI>();
+            slotUI.slotIndex = i;
+            slotUI.inventoryBackend = playerInventory;
+            var item = newSlot.transform.Find("Item");
 
-            Image iconDisplay = newSlot.transform.Find("Icon").GetComponent<Image>();
-            TextMeshProUGUI amountText = newSlot.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
-            TextMeshProUGUI valueText = newSlot.transform.Find("Value").GetComponent<TextMeshProUGUI>();
+            if (slot.item != null)
+            {
+                Image iconDisplay = item.transform.Find("Icon").GetComponent<Image>();
+                TextMeshProUGUI amountText = item.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI valueText = item.transform.Find("Value").GetComponent<TextMeshProUGUI>();
 
-            iconDisplay.sprite = slot.item.icon;
-            amountText.text = slot.amount.ToString();
-            float itemValue = (float)slot.item.value * slot.amount / 100.0f;
-            valueText.text = "$" + itemValue.ToString();
+                iconDisplay.sprite = slot.item.icon;
+                amountText.text = slot.amount.ToString();
+                float itemValue = (float)slot.item.value * slot.amount / 100.0f;
+                valueText.text = "$" + itemValue.ToString();
+            }
+            else
+            {
+                Image iconDisplay = item.transform.Find("Icon").GetComponent<Image>();
+                TextMeshProUGUI amountText = item.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
+                TextMeshProUGUI valueText = item.transform.Find("Value").GetComponent<TextMeshProUGUI>();
+
+                iconDisplay.color = new Color(0, 0, 0, 0);
+                amountText.text = "";
+                valueText.text = "";
+            }
         }
     }
 }
