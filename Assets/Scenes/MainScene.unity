@@ -2661,6 +2661,7 @@ MonoBehaviour:
   playerInventory: {fileID: 5957040273092123774}
   slotPrefab: {fileID: 7784538215071779543, guid: fa4303c9aa36a5b4da9f8ff13d84523b, type: 3}
   inventoryGrid: {fileID: 1200308625}
+  fpsCamera: {fileID: 1518121217}
   toggleAction:
     m_UseReference: 1
     m_Action:
@@ -3562,6 +3563,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8997539352737506645, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
   m_PrefabInstance: {fileID: 5957040273092123760}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1518121217 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2674589997326223717, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+  m_PrefabInstance: {fileID: 5957040273092123760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518121216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528fbbe17a4428c40aad3ff2d2327a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FpsCamera
 --- !u!1 &1524766328
 GameObject:
   m_ObjectHideFlags: 0

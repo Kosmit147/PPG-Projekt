@@ -12,6 +12,8 @@ public class FpsCamera : MonoBehaviour
     public float minPitch = -89.0f;
     public float maxPitch = 89.0f;
 
+    public bool enable = true;
+
     private new Camera camera = null;
     private Vector2 eulerAngles = Vector2.zero;
 
@@ -23,15 +25,18 @@ public class FpsCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        var zoom = zoomSpeed * zoomAction.action.ReadValue<Vector2>();
-        camera.fieldOfView -= zoom.y;
+        if (enable)
+        {
+            var zoom = zoomSpeed * zoomAction.action.ReadValue<Vector2>();
+            camera.fieldOfView -= zoom.y;
 
-        var look = lookSpeed * lookAction.action.ReadValue<Vector2>();
-        eulerAngles.x -= look.y;
-        eulerAngles.y += look.x;
-        eulerAngles.x = Mathf.Clamp(eulerAngles.x, -maxPitch, -minPitch);
+            var look = lookSpeed * lookAction.action.ReadValue<Vector2>();
+            eulerAngles.x -= look.y;
+            eulerAngles.y += look.x;
+            eulerAngles.x = Mathf.Clamp(eulerAngles.x, -maxPitch, -minPitch);
 
-        ApplyEulerAngles(eulerAngles);
+            ApplyEulerAngles(eulerAngles);
+        }
     }
 
     void OnEnable()

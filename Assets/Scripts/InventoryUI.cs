@@ -8,8 +8,11 @@ public class InventoryUI : MonoBehaviour
     public Inventory playerInventory;
     public GameObject slotPrefab;
     public GameObject inventoryGrid;
+    public FpsCamera fpsCamera;
 
     public InputActionProperty toggleAction; // Expects a button.
+
+    private bool inventoryActive = false;
 
     void Start()
     {
@@ -20,7 +23,16 @@ public class InventoryUI : MonoBehaviour
     void Update()
     {
         if (toggleAction.action.WasPerformedThisFrame())
-            inventoryGrid.SetActive(!inventoryGrid.activeSelf);
+        {
+            inventoryActive = !inventoryActive;
+            inventoryGrid.SetActive(inventoryActive);
+            fpsCamera.enabled = !inventoryActive;
+
+            if (inventoryActive)
+                Cursor.lockState = CursorLockMode.Confined;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     void UpdateUI()
