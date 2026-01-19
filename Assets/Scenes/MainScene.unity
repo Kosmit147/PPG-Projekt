@@ -3773,7 +3773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79adebbbc02e2ae449a45cd16babdae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamagePlayer
-  damage: 2
+  damage: 4
 --- !u!65 &1643855672
 BoxCollider:
   m_ObjectHideFlags: 0

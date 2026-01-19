@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
@@ -133,6 +134,9 @@ public class Player : MonoBehaviour
             stamina.depletionRate = 2.0f;
         else
             stamina.depletionRate = 0.0f;
+
+        if (health.value <= 0.0f)
+            SceneManager.LoadScene("GameOver");
     }
 
     void FixedUpdate()

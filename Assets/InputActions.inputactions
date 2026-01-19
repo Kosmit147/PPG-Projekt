@@ -698,6 +698,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Restart Game",
+                    "type": "Button",
+                    "id": "15212cdd-cc0e-4484-b133-ba1679206eba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1127,6 +1136,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Toggle Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56d2c2e0-2ae3-4d6b-8713-45c7c37074ba",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Restart Game",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
