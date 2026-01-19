@@ -9,6 +9,7 @@ public class ShopTrigger : MonoBehaviour
     public GameObject inventoryUI;
     public GameObject moneyText;
     public GameObject interactMessage;
+    public FlareGun flareGun;
 
     private bool playerInZone = false;
 
@@ -43,6 +44,7 @@ public class ShopTrigger : MonoBehaviour
             playerInZone = false;
             interactMessage.SetActive(false);
             shopUI.SetActive(false);
+            flareGun.canShoot = true;
         }
     }
 
@@ -54,6 +56,7 @@ public class ShopTrigger : MonoBehaviour
         interactMessage.SetActive(!shopActive);
         inventoryUI.SetActive(shopActive);
         moneyText.SetActive(shopActive);
+        flareGun.canShoot = !shopActive;
 
         if (shopActive)
             Cursor.lockState = CursorLockMode.Confined;

@@ -1081,7 +1081,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 253915851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 387763064}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: BuyStamina
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &253915851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1451,6 +1463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 387763063}
+  - component: {fileID: 387763064}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -1481,6 +1494,23 @@ Transform:
   - {fileID: 613950995}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &387763064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387763062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d79d37aca603fa4381fed219b3467cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shop
+  player: {fileID: 5957040273092123766}
+  flareGun: {fileID: 976497660}
+  ammoMoneyCost: 1
+  healthXPCost: 5
+  staminaXPCost: 5
 --- !u!1001 &404990440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2887,6 +2917,7 @@ MonoBehaviour:
   inventoryUI: {fileID: 1200308625}
   moneyText: {fileID: 590869171}
   interactMessage: {fileID: 2116104881}
+  flareGun: {fileID: 976497660}
 --- !u!1 &660824715 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1677593758701680334, guid: eccbad54074afa54cb3aa980784cdd7d, type: 3}
@@ -3807,6 +3838,7 @@ MonoBehaviour:
   barrelEnd: {fileID: 1299056296}
   ammo: 5
   maxAmmo: 10
+  canShoot: 1
   ammoText: {fileID: 952731836}
 --- !u!1 &991360583
 GameObject:
@@ -4001,7 +4033,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1000653765}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 387763064}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: BuyAmmo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1000653765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5772,7 +5816,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1659480058}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 387763064}
+        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
+        m_MethodName: BuyHealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1659480058
 MonoBehaviour:
   m_ObjectHideFlags: 0

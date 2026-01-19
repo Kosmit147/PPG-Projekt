@@ -11,6 +11,7 @@ public class FlareGun : MonoBehaviour
 
     public int ammo = 5;
     public int maxAmmo = 10;
+    public bool canShoot = true;
     public TextMeshProUGUI ammoText = null;
 
     private new Animation animation = null;
@@ -45,7 +46,7 @@ public class FlareGun : MonoBehaviour
 
     bool CanShoot()
     {
-        return ammo > 0;
+        return ammo > 0 && canShoot;
     }
 
     public void AddAmmo(int amount)
