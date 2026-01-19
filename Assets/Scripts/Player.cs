@@ -4,8 +4,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
-// TODO: Add Health, Stamina, Experience to required components.
-[RequireComponent(typeof(CharacterController), typeof(Animator), typeof(Health))]
+// TODO: Add Experience to required components.
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Stamina))]
 public class Player : MonoBehaviour
 {
     public InputActionProperty moveAction;               // Expects a Vector2.
@@ -24,11 +27,6 @@ public class Player : MonoBehaviour
     public float interactDistance = 3.0f;
 
     public float gravity = -9.81f;
-
-    public float stamina = 10.0f;
-    public float maxStamina = 10.0f;
-    public float staminaDepletionRate = 2.0f;
-    public float staminaRegenerationRate = 0.4f;
     public float minStaminaToRun = 1.0f;
 
     public Slider healthSlider = null;
@@ -60,6 +58,7 @@ public class Player : MonoBehaviour
     public PlayerControlMode initialControlMode = PlayerControlMode.Fps;
 
     public Health health = null;
+    public Stamina stamina = null;
 
     public FpsCamera fpsCamera = null;
     public TopDownCamera topDownCamera = null;
@@ -103,6 +102,7 @@ public class Player : MonoBehaviour
         animator.SetFloat(animParams.motionSpeed, 1.0f);
         audioSource = GetComponent<AudioSource>();
         health = GetComponent<Health>();
+        stamina = GetComponent<Stamina>();
 
         InitializeHud();
     }
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
 
         GroundAndGravityUpdate();
 
-        isRunning = sprintAction.action.IsPressed() && stamina >= minStaminaToRun;
+        isRunning = sprintAction.action.IsPressed() && stamina.value >= minStaminaToRun;
 
         switch (ControlMode)
         {
@@ -133,9 +133,9 @@ public class Player : MonoBehaviour
         }
 
         if (isRunning)
-            stamina = Mathf.Max(stamina - staminaDepletionRate * Time.deltaTime, 0.0f);
-
-        stamina = Mathf.Min(stamina + staminaRegenerationRate * Time.deltaTime, maxStamina);
+            stamina.depletionRate = 2.0f;
+        else
+            stamina.depletionRate = 0.0f;
 
         UpdateHud();
     }
@@ -224,16 +224,16 @@ public class Player : MonoBehaviour
     void InitializeHud()
     {
         healthSlider.minValue = 0.0f;
-        healthSlider.maxValue = health.maxHealth;
+        healthSlider.maxValue = health.maxValue;
 
         staminaSlider.minValue = 0.0f;
-        staminaSlider.maxValue = maxStamina;
+        staminaSlider.maxValue = stamina.maxValue;
     }
 
     void UpdateHud()
     {
-        healthSlider.value = health.health;
-        staminaSlider.value = stamina;
+        healthSlider.value = health.value;
+        staminaSlider.value = stamina.value;
     }
 
     float GetFpsMotionSpeed()

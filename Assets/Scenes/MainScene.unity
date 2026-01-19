@@ -5367,9 +5367,17 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4903694317523159582, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 5957040273092123780}
+    - target: {fileID: 4903694317523159582, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
       propertyPath: slider
       value: 
       objectReference: {fileID: 453751567}
+    - target: {fileID: 4903694317523159582, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+      propertyPath: stamina
+      value: 
+      objectReference: {fileID: 5957040273092123761}
     - target: {fileID: 4903694317523159582, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
       propertyPath: ammoText
       value: 
@@ -5609,6 +5617,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5957040273092123778}
   m_SourcePrefab: {fileID: 100100000, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+--- !u!114 &5957040273092123761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1130873080915387995, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+  m_PrefabInstance: {fileID: 5957040273092123760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107631170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b824f1631c9f945a906259445f55e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stamina
 --- !u!81 &5957040273092123765
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5778,6 +5797,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5957040273092123780 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7546200846706118274, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+  m_PrefabInstance: {fileID: 5957040273092123760}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107631170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ca5f6747166194ba5122639b21fc6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
 --- !u!1001 &6061008145423571158
 PrefabInstance:
   m_ObjectHideFlags: 0

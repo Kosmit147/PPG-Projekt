@@ -1,23 +1,15 @@
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class Stamina : MonoBehaviour
 {
     public float value = 10.0f;
     public float maxValue = 10.0f;
+    public float depletionRate = 0.0f;
     public float regenerationRate = 0.4f;
 
     void LateUpdate()
     {
         value = Mathf.Min(value + regenerationRate * Time.deltaTime, maxValue);
-    }
-
-    public void AddHealth(float amount)
-    {
-        value = Mathf.Min(value + amount, maxValue);
-    }
-
-    public void RemoveHealth(float amount)
-    {
-        value = Mathf.Max(value - amount, 0);
+        value = Mathf.Max(value - depletionRate * Time.deltaTime, 0.0f);
     }
 }
