@@ -5,13 +5,14 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public List<InventorySlot> container = new();
-    public int minSlots = 9;
+    public int slots = 9;
+    public int hotbarStartIndex = 6;
 
     public event Action OnInventoryChange;
 
     void Awake()
     {
-        for (int i = container.Count; i < minSlots; i++)
+        for (int i = container.Count; i < slots; i++)
             container.Add(new InventorySlot());
     }
 
