@@ -9,6 +9,7 @@ using TMPro;
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Stamina))]
 [RequireComponent(typeof(Experience))]
+[RequireComponent(typeof(PlayerHUD))]
 public class Player : MonoBehaviour
 {
     public InputActionProperty moveAction;               // Expects a Vector2.
@@ -28,10 +29,6 @@ public class Player : MonoBehaviour
 
     public float gravity = -9.81f;
     public float minStaminaToRun = 1.0f;
-
-    public Slider healthSlider = null;
-    public Slider staminaSlider = null;
-    public TextMeshProUGUI experienceText = null;
 
     [System.Serializable]
     public enum PlayerControlMode
@@ -105,8 +102,6 @@ public class Player : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         health = GetComponent<Health>();
         stamina = GetComponent<Stamina>();
-
-        InitializeHud();
     }
 
     void Update()
@@ -138,8 +133,6 @@ public class Player : MonoBehaviour
             stamina.depletionRate = 2.0f;
         else
             stamina.depletionRate = 0.0f;
-
-        UpdateHud();
     }
 
     void FixedUpdate()
@@ -223,24 +216,6 @@ public class Player : MonoBehaviour
         verticalVelocity += Time.deltaTime * gravity;
     }
 
-    void InitializeHud()
-    {
-        healthSlider.minValue = 0.0f;
-        healthSlider.maxValue = health.maxValue;
-
-        staminaSlider.minValue = 0.0f;
-        staminaSlider.maxValue = stamina.maxValue;
-
-        experienceText.text = $"XP: {experience.value}";
-    }
-
-    void UpdateHud()
-    {
-        healthSlider.value = health.value;
-        staminaSlider.value = stamina.value;
-        experienceText.text = $"XP: {experience.value}";
-    }
-
     float GetFpsMotionSpeed()
     {
         if (isRunning)
@@ -263,8 +238,8 @@ public class Player : MonoBehaviour
             if (hit.collider.CompareTag("Interactive"))
             {
                 interactText.text = "Interacted with object!";
-                CancelInvoke(nameof(ClearText));
-                Invoke(nameof(ClearText), 1.0f);
+                CancelInvoke(nameof(ClearInteractText));
+                Invoke(nameof(ClearInteractText), 1.0f);
 
                 interactiveObject = hit.collider.gameObject;
                 interactiveObjectRigidbody = interactiveObject.GetComponent<Rigidbody>();
@@ -289,7 +264,7 @@ public class Player : MonoBehaviour
         interactiveObjectRigidbody = null;
     }
 
-    void ClearText()
+    void ClearInteractText()
     {
         interactText.text = "";
     }

@@ -5537,6 +5537,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3788308952134978217, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1397613229}
+    - target: {fileID: 3788308952134978217, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+      propertyPath: staminaSlider
+      value: 
+      objectReference: {fileID: 453751567}
+    - target: {fileID: 3788308952134978217, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
+      propertyPath: experienceText
+      value: 
+      objectReference: {fileID: 1944615370}
     - target: {fileID: 3854035659869994036, guid: f958f4f02356dcf46aa6e457806717d0, type: 3}
       propertyPath: near clip plane
       value: 0.1
