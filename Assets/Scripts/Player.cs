@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
-[RequireComponent(typeof(CharacterController), typeof(Animator))]
+// TODO: Add Health, Stamina, Experience to required components.
+[RequireComponent(typeof(CharacterController), typeof(Animator), typeof(Health))]
 public class Player : MonoBehaviour
 {
     public InputActionProperty moveAction;               // Expects a Vector2.
@@ -23,10 +24,6 @@ public class Player : MonoBehaviour
     public float interactDistance = 3.0f;
 
     public float gravity = -9.81f;
-
-    public float health = 10.0f;
-    public float maxHealth = 10.0f;
-    public float healthRegenerationRate = 0.4f;
 
     public float stamina = 10.0f;
     public float maxStamina = 10.0f;
@@ -61,6 +58,8 @@ public class Player : MonoBehaviour
     }
 
     public PlayerControlMode initialControlMode = PlayerControlMode.Fps;
+
+    public Health health = null;
 
     public FpsCamera fpsCamera = null;
     public TopDownCamera topDownCamera = null;
@@ -103,6 +102,7 @@ public class Player : MonoBehaviour
         RetrieveAnimParamIds();
         animator.SetFloat(animParams.motionSpeed, 1.0f);
         audioSource = GetComponent<AudioSource>();
+        health = GetComponent<Health>();
 
         InitializeHud();
     }
@@ -135,7 +135,6 @@ public class Player : MonoBehaviour
         if (isRunning)
             stamina = Mathf.Max(stamina - staminaDepletionRate * Time.deltaTime, 0.0f);
 
-        health = Mathf.Min(health + healthRegenerationRate * Time.deltaTime, maxHealth);
         stamina = Mathf.Min(stamina + staminaRegenerationRate * Time.deltaTime, maxStamina);
 
         UpdateHud();
@@ -222,20 +221,10 @@ public class Player : MonoBehaviour
         verticalVelocity += Time.deltaTime * gravity;
     }
 
-    public void AddHealth(float value)
-    {
-        health = Mathf.Min(health + value, maxHealth);
-    }
-
-    public void Damage(float value)
-    {
-        health = Mathf.Max(health - value, 0);
-    }
-
     void InitializeHud()
     {
         healthSlider.minValue = 0.0f;
-        healthSlider.maxValue = maxHealth;
+        healthSlider.maxValue = health.maxHealth;
 
         staminaSlider.minValue = 0.0f;
         staminaSlider.maxValue = maxStamina;
@@ -243,7 +232,7 @@ public class Player : MonoBehaviour
 
     void UpdateHud()
     {
-        healthSlider.value = health;
+        healthSlider.value = health.health;
         staminaSlider.value = stamina;
     }
 
