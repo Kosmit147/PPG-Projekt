@@ -11,6 +11,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryDisplay;
     public GameObject hotbarDisplay;
     public FpsCamera fpsCamera;
+    public TextMeshProUGUI moneyText;
 
     public InputActionProperty toggleAction; // Expects a button.
 
@@ -28,6 +29,7 @@ public class InventoryUI : MonoBehaviour
         {
             inventoryActive = !inventoryActive;
             inventoryDisplay.SetActive(inventoryActive);
+            moneyText.gameObject.SetActive(inventoryActive);
             fpsCamera.enabled = !inventoryActive;
 
             if (inventoryActive)
@@ -107,5 +109,7 @@ public class InventoryUI : MonoBehaviour
                 valueText.text = "";
             }
         }
+
+        moneyText.text = $"Money: {playerInventory.GetMoney()}";
     }
 }

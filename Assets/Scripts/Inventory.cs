@@ -10,6 +10,8 @@ public class Inventory : MonoBehaviour
 
     public event Action OnInventoryChange;
 
+    private float money = 0;
+
     void Awake()
     {
         for (int i = container.Count; i < slots; i++)
@@ -41,6 +43,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        UpdateMoney();
         OnInventoryChange?.Invoke();
     }
 
@@ -52,6 +55,22 @@ public class Inventory : MonoBehaviour
         (container[indexB], container[indexA]) = (container[indexA], container[indexB]);
 
         OnInventoryChange?.Invoke();
+    }
+
+    public float GetMoney()
+    {
+        return money;
+    }
+
+    private void UpdateMoney()
+    {
+        money = 0;
+
+        foreach (var slot in container)
+        {
+            if (slot.item)
+                money += (float)slot.item.value * slot.amount / 100.0f;
+        }
     }
 }
 
