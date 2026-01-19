@@ -707,6 +707,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Toggle Shop",
+                    "type": "Button",
+                    "id": "b670a20b-0d6b-446b-9f85-ca0a51441c05",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1147,6 +1156,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Restart Game",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc12f42f-5681-40ee-9ad6-f6339ce5ab92",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Toggle Shop",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
