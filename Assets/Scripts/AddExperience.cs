@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class RestoreHealth : MonoBehaviour
+public class AddExperience : MonoBehaviour
 {
-    public float amount = 2.0f;
+    public float amount = 5.0f;
     public AudioClip soundEffect = null;
 
     void OnTriggerEnter(Collider other)
@@ -12,8 +12,8 @@ public class RestoreHealth : MonoBehaviour
             var player = other.GetComponent<Player>();
             player.PlayClip(soundEffect);
             
-            if (other.TryGetComponent<Health>(out var playerHealth))
-                playerHealth.AddHealth(amount);
+            if (other.TryGetComponent<Experience>(out var playerExperience))
+                playerExperience.value += amount;
 
             Destroy(gameObject);
         }

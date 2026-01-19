@@ -4,11 +4,11 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using TMPro;
 
-// TODO: Add Experience to required components.
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Health))]
 [RequireComponent(typeof(Stamina))]
+[RequireComponent(typeof(Experience))]
 public class Player : MonoBehaviour
 {
     public InputActionProperty moveAction;               // Expects a Vector2.
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
     public Slider healthSlider = null;
     public Slider staminaSlider = null;
+    public TextMeshProUGUI experienceText = null;
 
     [System.Serializable]
     public enum PlayerControlMode
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour
 
     public Health health = null;
     public Stamina stamina = null;
+    public Experience experience = null;
 
     public FpsCamera fpsCamera = null;
     public TopDownCamera topDownCamera = null;
@@ -228,12 +230,15 @@ public class Player : MonoBehaviour
 
         staminaSlider.minValue = 0.0f;
         staminaSlider.maxValue = stamina.maxValue;
+
+        experienceText.text = $"XP: {experience.value}";
     }
 
     void UpdateHud()
     {
         healthSlider.value = health.value;
         staminaSlider.value = stamina.value;
+        experienceText.text = $"XP: {experience.value}";
     }
 
     float GetFpsMotionSpeed()
