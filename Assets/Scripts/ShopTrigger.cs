@@ -6,10 +6,12 @@ public class ShopTrigger : MonoBehaviour
     public InputActionProperty openShopAction; // Expects a button.
 
     public GameObject shopUI;
-    public GameObject inventoryUI;
+    public GameObject inventoryDisplay;
+    public GameObject inventoryManager;
     public GameObject moneyText;
     public GameObject interactMessage;
     public FlareGun flareGun;
+    public FpsCamera fpsCamera;
 
     private bool playerInZone = false;
 
@@ -45,6 +47,9 @@ public class ShopTrigger : MonoBehaviour
             interactMessage.SetActive(false);
             shopUI.SetActive(false);
             flareGun.canShoot = true;
+            fpsCamera.enabled = true;
+            var inventoryUIComponent = inventoryManager.GetComponent<InventoryUI>();
+            inventoryUIComponent.showSellButtons = false;
         }
     }
 
@@ -54,9 +59,13 @@ public class ShopTrigger : MonoBehaviour
         shopUI.SetActive(!shopActive);
         shopActive = shopUI.activeSelf;
         interactMessage.SetActive(!shopActive);
-        inventoryUI.SetActive(shopActive);
+        inventoryDisplay.SetActive(shopActive);
+        var inventoryUIComponent = inventoryManager.GetComponent<InventoryUI>();
+        inventoryUIComponent.showSellButtons = shopActive;
+        inventoryUIComponent.UpdateUI();
         moneyText.SetActive(shopActive);
         flareGun.canShoot = !shopActive;
+        fpsCamera.enabled = !shopActive;
 
         if (shopActive)
             Cursor.lockState = CursorLockMode.Confined;

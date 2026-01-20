@@ -2916,10 +2916,12 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 5688043102947696586, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
   shopUI: {fileID: 586297141}
-  inventoryUI: {fileID: 1200308625}
+  inventoryDisplay: {fileID: 1200308625}
+  inventoryManager: {fileID: 1087199793}
   moneyText: {fileID: 590869171}
   interactMessage: {fileID: 2116104881}
   flareGun: {fileID: 976497660}
+  fpsCamera: {fileID: 1518121217}
 --- !u!1 &660824715 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1677593758701680334, guid: eccbad54074afa54cb3aa980784cdd7d, type: 3}
@@ -4346,6 +4348,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -7119460586125695567, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
+  showSellButtons: 0
 --- !u!1 &1102241248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7685,6 +7688,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1371836289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1931059390908764439
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 13984552574964956, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_Name
+      value: White Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.26908
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207562363801512108, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 80a1de7908c4a8543b37381cedb42968, type: 3}
 --- !u!1001 &2029113462982786585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8450,6 +8510,9 @@ MonoBehaviour:
   container: []
   slots: 9
   hotbarStartIndex: 6
+  bronzeCoin: {fileID: 11400000, guid: 828f8e2c2a1106a4cacf65341eb7af79, type: 2}
+  silverCoint: {fileID: 11400000, guid: 0e6dad757cfdde74ea220a7574196fb2, type: 2}
+  goldCoin: {fileID: 11400000, guid: ae00e666060499240859292c284798dc, type: 2}
 --- !u!82 &5957040273092123778
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8769,3 +8832,4 @@ SceneRoots:
   - {fileID: 7740639602437800601}
   - {fileID: 2214273521017391592}
   - {fileID: 387763063}
+  - {fileID: 1931059390908764439}

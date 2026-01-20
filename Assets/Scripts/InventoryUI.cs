@@ -14,6 +14,7 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI moneyText;
 
     public InputActionProperty toggleAction; // Expects a button.
+    public bool showSellButtons = false;
 
     private bool inventoryActive = false;
 
@@ -39,7 +40,7 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    void UpdateUI()
+    public void UpdateUI()
     {
         foreach (Transform child in inventoryDisplay.transform)
             Destroy(child.gameObject);
@@ -59,6 +60,15 @@ public class InventoryUI : MonoBehaviour
                 Image iconDisplay = item.transform.Find("Icon").GetComponent<Image>();
                 TextMeshProUGUI amountText = item.transform.Find("Amount").GetComponent<TextMeshProUGUI>();
                 TextMeshProUGUI valueText = item.transform.Find("Value").GetComponent<TextMeshProUGUI>();
+
+                if (showSellButtons && slot.item.canBeSold)
+                {
+                    var sellButton = item.transform.Find("Sell");
+                    sellButton.gameObject.SetActive(true);
+                    var buttonComponent = sellButton.GetComponent<Button>();
+                    int iCopy = i;
+                    buttonComponent.onClick.AddListener(() => playerInventory.SellItem(iCopy));
+                }
 
                 iconDisplay.sprite = slot.item.icon;
                 amountText.text = slot.amount.ToString();

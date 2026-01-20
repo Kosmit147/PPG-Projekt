@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecaddffe675be5c4381c89f61452e53c, type: 3}
-  m_Name: Bronze Coin
+  m_Name: White Block
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Bronze Coin
-  icon: {fileID: 21300000, guid: abccf8751e994124bb259458fbbf08c3, type: 3}
-  value: 1
-  canBeSold: 0
+  itemName: White Block
+  icon: {fileID: 21300000, guid: 786aa4bc4afe21e4aab9aa3fa82d0c8b, type: 3}
+  value: 111
+  canBeSold: 1
   description: 

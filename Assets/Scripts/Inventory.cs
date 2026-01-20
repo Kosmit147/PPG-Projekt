@@ -8,6 +8,10 @@ public class Inventory : MonoBehaviour
     public int slots = 9;
     public int hotbarStartIndex = 6;
 
+    public ItemData bronzeCoin;
+    public ItemData silverCoint;
+    public ItemData goldCoin;
+
     public event Action OnInventoryChange;
 
     private float money = 0;
@@ -43,6 +47,22 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        UpdateMoney();
+        OnInventoryChange?.Invoke();
+    }
+
+    public void SellItem(int itemIndex)
+    {
+        var itemSlot = container[itemIndex];
+        int goldCoinCount = itemSlot.item.value / 100;
+        int silverCoinCount = itemSlot.item.value % 100 / 10;
+        int bronzeCoinCount = itemSlot.item.value % 10 / 1;
+
+        AddItem(goldCoin, goldCoinCount);
+        AddItem(silverCoint, silverCoinCount);
+        AddItem(bronzeCoin, bronzeCoinCount);
+
+        container[itemIndex].item = null;
         UpdateMoney();
         OnInventoryChange?.Invoke();
     }
