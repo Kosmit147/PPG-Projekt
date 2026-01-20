@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
     public float ammoMoneyCost = 1.0f;
     public float healthXPCost = 5.0f;
     public float staminaXPCost = 5.0f;
+    public float sprintXPCost = 5.0f;
 
     public void BuyAmmo()
     {
@@ -38,6 +39,18 @@ public class Shop : MonoBehaviour
         {
             playerStamina.maxValue += 10.0f;
             playerXP.value = Mathf.Max(playerXP.value - staminaXPCost, 0.0f);
+        }
+    }
+
+    public void BuySprint()
+    {
+        var currentSprintSpeed = player.sprintSpeed;
+        var playerXP = player.GetComponent<Experience>();
+
+        if (playerXP.value >= sprintXPCost)
+        {
+            player.sprintSpeed += 2.0f;
+            playerXP.value = Mathf.Max(playerXP.value - sprintXPCost, 0.0f);
         }
     }
 }
