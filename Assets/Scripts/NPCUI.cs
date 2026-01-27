@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class NPCUI : MonoBehaviour
 {
     public Health NPCHealth;
-    public GameObject camera;
+    public GameObject cameraObject;
     public Slider healthSlider;
 
     void Start()
@@ -14,14 +14,14 @@ public class NPCUI : MonoBehaviour
 
     void LateUpdate()
     {
-        if (camera == null)
+        if (cameraObject == null)
         {
             Destroy(gameObject);
             return;
         }
 
         var eulerAngles = transform.eulerAngles;
-        transform.eulerAngles = new Vector3(eulerAngles.x, camera.transform.eulerAngles.y, eulerAngles.z);
+        transform.eulerAngles = new Vector3(eulerAngles.x, cameraObject.transform.eulerAngles.y, eulerAngles.z);
 
         healthSlider.value = NPCHealth.value;
     }

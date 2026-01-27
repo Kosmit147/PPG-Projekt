@@ -6,8 +6,9 @@ using TMPro;
 public class NPC : MonoBehaviour
 {
     public InputActionProperty talkAction; // Expects a button.
-    public TextMeshProUGUI dialogueText = null;
     private bool playerInTalkingRange = false;
+    public DialogueManager dialogueManager;
+    public DialogueNode dialogueStart;
 
     void Update()
     {
@@ -17,29 +18,18 @@ public class NPC : MonoBehaviour
 
     void Talk()
     {
-        dialogueText.text = "Hello traveler.";
-        CancelInvoke(nameof(ClearDialogueText));
-        Invoke(nameof(ClearDialogueText), 2.0f);
-    }
-
-    void ClearDialogueText()
-    {
-        dialogueText.text = "";
+        dialogueManager.StartDialogue(dialogueStart);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInTalkingRange = true;
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
             playerInTalkingRange = false;
-        }
     }
 }

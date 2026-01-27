@@ -799,7 +799,8 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -3800630383714506375, guid: 610a2a0b110d3b64a8ea4687d1dde026, type: 3}
-  dialogueText: {fileID: 7786317408380585648}
+  dialogueManager: {fileID: 0}
+  dialogueStart: {fileID: 11400000, guid: d5b974227d1da3d41959af0fa78a2c18, type: 2}
 --- !u!114 &1942511130901051477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1861,7 +1862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NPCUI
   NPCHealth: {fileID: 1942511130901051477}
-  camera: {fileID: 0}
+  cameraObject: {fileID: 0}
   healthSlider: {fileID: 8893285500199097127}
 --- !u!1 &5180254714972504913
 GameObject:
