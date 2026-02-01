@@ -4,12 +4,19 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    public GameObject dialogueUI;
     public TextMeshProUGUI dialogueText;
     public Transform choiceButtonContainer;
     public GameObject choiceButtonPrefab;
+    public FpsCamera fpsCamera;
+    public FlareGun flareGun;
 
     public void StartDialogue(DialogueNode startingNode)
     {
+        dialogueUI.SetActive(true);
+        fpsCamera.enabled = false;
+        Cursor.visible = true;
+        flareGun.canShoot = false;
         ShowNode(startingNode);
     }
 
@@ -46,6 +53,9 @@ public class DialogueManager : MonoBehaviour
 
     void CloseDialogue()
     {
-        dialogueText.transform.parent.gameObject.SetActive(false);
+        dialogueUI.SetActive(false);
+        fpsCamera.enabled = true;
+        Cursor.visible = false;
+        flareGun.canShoot = true;
     }
 }

@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 979ef1c0365d5974aa8c551739fd5d6c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dialogueUI: {instanceID: 0}
+  - dialogueText: {instanceID: 0}
+  - choiceButtonContainer: {instanceID: 0}
+  - choiceButtonPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
